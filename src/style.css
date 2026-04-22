@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    background-color: #fafafa; /* zinc-50 — evita fondo blanco al overscroll en modo claro */
+  }
+  html.dark {
+    background-color: #18181b; /* zinc-900 — ídem en modo oscuro */
+  }
+  input, select, textarea {
+    font-size: 16px; /* previene zoom en iOS al hacer focus */
+  }
+}

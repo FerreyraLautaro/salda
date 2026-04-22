@@ -293,7 +293,7 @@ const totalPaid = computed(() => props.expenses.reduce((s, e) => s + e.amount, 0
             <input
               v-model="draftDescription"
               type="text"
-              placeholder="ej: Carne y chorizos"
+              placeholder="ej: Carne y bebida"
               maxlength="200"
               class="px-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
               @keyup.enter="submitAdd"

@@ -16,7 +16,7 @@ const text = computed(() => {
   })
   const body = `💸 Salda — Resultado:\n${lines.join('\n')}`
   if (!donationAlias) return body
-  return `${body}\n\n🙌 Espero les haya ayudado, les dejo mi alias por desean: ${donationAlias}`
+  return `${body}\n\n🙌 Espero les haya ayudado, les dejo mi alias por si desean aportar: ${donationAlias}`
 })
 
 async function copy() {

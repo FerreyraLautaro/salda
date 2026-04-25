@@ -55,6 +55,10 @@ export function useCompound() {
   function removeParticipant(id: string) {
     participants.value = participants.value.filter(p => p.id !== id)
     expenses.value = expenses.value.filter(e => e.paidById !== id)
+    for (const exp of expenses.value) {
+      exp.includedParticipantIds = exp.includedParticipantIds.filter(pid => pid !== id)
+    }
+    expenses.value = expenses.value.filter(e => e.includedParticipantIds.length > 0)
   }
 
   function updateParticipant(id: string, patch: Partial<Pick<Participant, 'name' | 'alias'>>) {
@@ -115,8 +119,10 @@ export function useCompound() {
 
     while (i < debtors.length && j < creditors.length) {
       const amount = Math.min(debtors[i].amount, creditors[j].amount)
-      const from = participants.value.find(p => p.id === debtors[i].id)!
-      const to = participants.value.find(p => p.id === creditors[j].id)!
+      const from = participants.value.find(p => p.id === debtors[i].id)
+      const to = participants.value.find(p => p.id === creditors[j].id)
+
+      if (!from || !to) { i++; j++; continue }
 
       result.push({
         fromId: from.id,
